@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/andemar-cursos/c.Node_de_cero_a_experto_2021#readme",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "yargs": "^17.0.0"
   }
 }
