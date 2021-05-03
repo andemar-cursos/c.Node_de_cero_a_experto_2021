@@ -5,9 +5,16 @@ console.clear();
 
 const main = async() => {
 
-    mostrarMenu();
+    let opt = '';
 
-    pausa();
+    do{
+        opt = await mostrarMenu();
+        
+        if(opt !== '0') await pausa();
+
+    }while(opt !== '0')
+
+
 }
 
 
