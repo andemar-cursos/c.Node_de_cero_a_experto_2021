@@ -1,29 +1,32 @@
 const fs = require('fs');
 
-const crearArchivo = async(numero = 5) => {
+const crearArchivo = async(base = 5, listar) => {
     try {
 
-        console.log("===========")
-        console.log(`Tabla del ${numero}`)
-        console.log("===========")
-
+        
         let iteracion = 10;
         let salida = "";
-
+        
         for(let i = 1; i <= iteracion; i++){
-            salida += `${numero} x ${i} = ${numero*i}\n`;
+            salida += `${base} x ${i} = ${base*i}\n`;
         }
+        
+        fs.writeFileSync(`tabla-${base}.txt`, salida);
+        
+        if(listar) imprimir(base, salida);
 
-        console.log(salida);
-
-    
-        fs.writeFileSync(`tabla-${numero}.txt`, salida);
-        return `tabla-${numero}.txt`;
+        return `tabla-${base}.txt`;
     } catch (error) {
         throw error;
     }
 }
 
+const imprimir = (base, salida) => {
+    console.log("===========")
+    console.log(`Tabla del ${base}`)
+    console.log("===========")
+    console.log(salida);
+}
 
 module.exports = {
     crearArchivo
