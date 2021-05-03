@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-const crearArchivo = async(base = 5, listar) => {
+const crearArchivo = async(base = 5, hasta = 10, listar) => {
     try {
 
         
-        let iteracion = 10;
+        let iteracion = hasta;
         let salida = "";
         
         for(let i = 1; i <= iteracion; i++){

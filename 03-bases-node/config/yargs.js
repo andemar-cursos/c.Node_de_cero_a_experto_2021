@@ -1,4 +1,5 @@
 const argv = require('yargs')
+    
     .option('b', {
         alias: 'base',
         type: 'number',
@@ -11,6 +12,7 @@ const argv = require('yargs')
         }
         return true;
     })
+
     .option('l', {
         alias: 'listar',
         type: 'boolean',
@@ -20,6 +22,19 @@ const argv = require('yargs')
     .check( (argv, options) => {
         if(isNaN(argv.listar)){
             throw 'El listar debe ser un booleano'
+        }
+        return true;
+    })
+
+    .option('h', {
+        alias: 'hasta',
+        type: 'number',
+        default: 10,
+        describe: 'Indica el numero de iteraciones que se haran'
+    })
+    .check( (argv, options) => {
+        if(isNaN(argv.hasta)){
+            throw 'El hasta debe de ser un numero';
         }
         return true;
     })

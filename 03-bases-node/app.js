@@ -5,7 +5,7 @@ const argv = require('./config/yargs');
 
 console.clear();
 
-crearArchivo(argv.base, argv.listar)
+crearArchivo(argv.base, argv.hasta, argv.listar)
     .then((msg)  => console.log(msg.rainbow + " Creado"))
     .catch((msg) => console.log(msg + " - err"));
 
