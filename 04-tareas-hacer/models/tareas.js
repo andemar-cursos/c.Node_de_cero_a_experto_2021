@@ -8,7 +8,6 @@ class Tareas {
         
         const listado = [];
 
-
         Object.values(this._listado).forEach(value => listado.push(value));
 
         return listado;
