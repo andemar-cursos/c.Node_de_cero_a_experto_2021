@@ -4,9 +4,46 @@ require('colors');
 const preguntas = [
     {
         type: 'list',
-        name: 'Opcion',
+        name: 'opcion',
         message: 'Que desea hacer?',
-        choices: ['opt1', 'opt2', 'opt3'],
+        choices: [
+            {
+                value: '1',
+                name: '1. Crear tarea'
+            },
+            {
+                value: '2',
+                name: '2. Listar tareas'
+            },
+            {
+                value: '3',
+                name: '3. Listar tareas completadas'
+            },
+            {
+                value: '4',
+                name: '4. Listar tareas pendientes'
+            },
+            {
+                value: '5',
+                name: '5. Completar tarea(s)'
+            },
+            {
+                value: '6',
+                name: '6. Borrar tarea'
+            },
+            {
+                value: '0',
+                name: '0. Salir'
+            },
+        ],
+    }
+]
+
+const msgPausa = [
+    {
+        type: 'input',
+        name: 'pausa',
+        message: `Oprima ${'enter'.green} para seguir`
     }
 ]
 
@@ -18,14 +55,21 @@ const inquirerMenu = async() => {
     console.log('  Selecciona una opcion'.green);
     console.log('=========================\n'.green);
 
-    const opt = await inquirer.prompt(preguntas)
+    const {opcion} = await inquirer.prompt(preguntas)
 
-    return opt;
+    console.log(opcion);
+
+    return opcion;
 }
 
 
+const pausa = async() => {
+
+    await inquirer.prompt(msgPausa);
+}
 
 
 module.exports = {
     inquirerMenu,
+    pausa
 }
