@@ -9,8 +9,8 @@ const main = async() => {
 
     do{
         opt = await inquirerMenu();
+        console.log('\n'); 
         await pausa();
-        console.log('\n');
     }while(opt !== '0')
 
 
