@@ -45,6 +45,26 @@ class Tareas {
 
     }
 
+
+    listarPendientesCompletadas( completadas = true) {
+
+        let i = 1;
+
+        this.listadoArr.forEach( tarea => {
+
+            if(completadas && tarea.completadoEn){
+                console.log(`${i}. `.green + `${tarea.desc} :: ` + `${tarea.completadoEn}`.green)
+                i++;
+            }
+            else if(!completadas && !tarea.completadoEn){
+                console.log(`${i}. `.green + `${tarea.desc} :: ` + `Pendiente`.red)
+                i++;
+            }
+
+        })
+
+    }
+
 }
 
 
