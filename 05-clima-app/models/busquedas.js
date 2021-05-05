@@ -1,5 +1,4 @@
 const axios = require('axios');
-const env = require('../environment/environment');
 
 class Busquedas {
 
@@ -11,7 +10,7 @@ class Busquedas {
 
     get paramsMapbox() {
         return {
-            'access_token': env.MAPBOX,
+            'access_token': process.env.MAPBOX_KEY,
             'limit': 5,
             'language': 'es',
         };
@@ -31,7 +30,7 @@ class Busquedas {
 
             return []; // Retornar las ciudades coincidentes
         } catch (error) {
-            
+            console.log(error);
         }
 
     } 
