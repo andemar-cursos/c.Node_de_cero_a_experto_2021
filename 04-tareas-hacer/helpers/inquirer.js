@@ -57,8 +57,6 @@ const inquirerMenu = async() => {
 
     const {opcion} = await inquirer.prompt(preguntas)
 
-    console.log(opcion);
-
     return opcion;
 }
 

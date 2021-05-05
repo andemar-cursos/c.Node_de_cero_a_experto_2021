@@ -11,7 +11,7 @@ const main = async() => {
     const tareas = new Tareas();
 
     const tareasArr = leerDB();
-
+    
     if(tareasArr) 
         tareas.cargarTareasFromArray(tareasArr);
 
@@ -23,12 +23,12 @@ const main = async() => {
                 // Crear opcion
                 const desc = await leerInput('Descripcion: ');
                 tareas.crearTarea(desc);
-                guardarDB(tareas);
+                guardarDB(tareas.listadoArr);
                 break;
 
             case '2':
                 // Listar
-                console.log(tareas.listadoArr);
+                tareas.listadoCompleto();
                 break;
             default:
                 break;
