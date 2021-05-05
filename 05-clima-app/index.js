@@ -14,7 +14,8 @@ const main = async() => {
             case 1:
                 // Mostrar msg
                 const lugar = await leerInput('Ciudad: ');
-                console.log(lugar);
+                
+                await busquedas.ciudad(lugar);
                 // Buscar lugares
                 // Seleccionar lugar
                 // Clima data
