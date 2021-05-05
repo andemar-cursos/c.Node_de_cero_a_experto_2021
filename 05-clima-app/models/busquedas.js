@@ -26,9 +26,13 @@ class Busquedas {
             })
 
             const resp = await instance.get();
-            console.log(resp.data);
-
-            return []; // Retornar las ciudades coincidentes
+            
+            return resp.data.features.map(lugar => ({
+                id: lugar.id,
+                nombre: lugar.place_name,
+                lng: lugar.center[0],
+                lat: lugar.center[1]
+            })); // Retornar las ciudades coincidentes
         } catch (error) {
             console.log(error);
         }
