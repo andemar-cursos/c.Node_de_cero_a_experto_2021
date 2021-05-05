@@ -73,7 +73,19 @@ class Tareas {
 
     }
 
+
+    toggleCompletados( ids = [] ) {
+
+        Object.keys(this._listado).forEach(id => {
+
+            (ids.includes(id))
+                ? this._listado[id].completadoEn = new Date().toISOString()
+                : this._listado[id].completadoEn = null;
+        })
+
+    }
 }
+
 
 
 module.exports = Tareas;

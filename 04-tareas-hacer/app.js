@@ -38,7 +38,8 @@ const main = async() => {
                 break;
             case '5':
                 const ids = await mostrarListadoChecklist(tareas.listadoArr);
-                console.log(ids);
+                await tareas.toggleCompletados(ids);
+                guardarDB(tareas.listadoArr);
                 break;
             case '6':
                     const id = await listadoTareasBorrar(tareas.listadoArr);
