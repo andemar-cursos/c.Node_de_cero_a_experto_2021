@@ -1,5 +1,1 @@
-[
-  { "id": "024ec9b3-78e1-42b0-98f5-851b781d0164", "desc": "Alma", "completadoEn": "142123132" },
-  { "id": "98f9c0a4-b015-48ca-8b93-4a86bbfad249", "desc": "Realidad", "completadoEn": null },
-  { "id": "78f0209b-179d-4c92-b039-2642884b5a3f", "desc": "Poder", "completadoEn": null }
-]
+[{"id":"78f0209b-179d-4c92-b039-2642884b5a3f","desc":"Poder","completadoEn":null}]
