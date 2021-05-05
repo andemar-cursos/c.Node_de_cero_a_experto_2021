@@ -1,8 +1,10 @@
+const fs = require('fs');
 const axios = require('axios');
 
 class Busquedas {
 
     historial = [];
+    dbPath = './db/database.json';
 
     constructor() {
         //TODO: Leer DB
@@ -71,6 +73,34 @@ class Busquedas {
             console.log(error);
         }
     }
+
+
+
+    agregarHistorial(lugar = '') {
+
+        if(this.historial.includes(lugar.toLocaleLowerCase())){
+            return;
+        }else {
+            this.historial.unshift(lugar.toLocaleLowerCase());
+            this.guardarDB();
+        }
+
+        
+    }
+
+    guardarDB() {
+
+        const payload = {
+            historial: this.historial,
+        }
+
+        fs.writeFileSync(this.dbPath, JSON.stringify(payload));
+    }
+
+    leerDB() {
+
+    }
+
 }
 
 
