@@ -6,6 +6,7 @@ const Busquedas = require('./models/busquedas');
 const main = async() => {
 
     const busquedas = new Busquedas();
+
     let opcion;
 
     do {
@@ -43,7 +44,7 @@ const main = async() => {
                 break;
             
             case 2:
-                busquedas.historial.forEach((lugar, i) => console.log(`${i+1} `.green + lugar.nombre))
+                busquedas.historialCapitalizado.forEach((lugar, i) => console.log(`${i+1} `.green + lugar))
                 break;
 
             case 0:
