@@ -1,12 +1,14 @@
 const express = require('express');
-
 const app = express();
+
+// TODO: require('hbs');
+app.set('view engine', 'hbs');
 
 // Servir contenido estatico
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.render('home');
 });
 
 app.get('/generic', (req, res) => {
