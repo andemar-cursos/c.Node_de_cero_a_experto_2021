@@ -1,8 +1,11 @@
 const express = require('express');
+const hbs = require('hbs');
+
 const app = express();
 
-// TODO: require('hbs');
+// Handlebar
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname  + '/views/partials', () => {});
 
 // Servir contenido estatico
 app.use(express.static('public'));
@@ -15,17 +18,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname + '/public/generic.html');
-})
+    res.render('generic', {
+        nombre: 'Andemar',
+        titulo: 'Curso de Node',
+    });
+});
 
 
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname + '/public/elements.html');
-})
+    res.render('elements', {
+        nombre: 'Andemar',
+        titulo: 'Curso de Node',
+    });
+});
 
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/public/404.html');
+    res.render('404');
 })
 
 app.listen(8080);
