@@ -1,26 +1,27 @@
-const mysql = require('mysql2');
+const mongoose = require('mongoose');
 
-const connection = mysql.createConnection({
-  host     : process.env.HOST_DB,
-  user     : process.env.USER_DB,
-  password : process.env.PASS_DB,
-  database : process.env.DATABASE_DB
-});
- 
-const dbConnection = () => {
-    
+const dbConnection = async() => {
+
     try {
-        connection.connect();
+
+        await mongoose.connect( process.env.MONGODB_CNN, {
+            useNewUrlParser:    true,
+            useUnifiedTopology: true,
+            useCreateIndex:     true,
+            useFindAndModify:   true,
+        } );
+
         console.log('db online');
+
     } catch (error) {
         console.log(error);
-        throw new Error('Error a la hora de iniciar la conexion con db');
+        throw new Error(error);
     }
 
-    return connection;
-
 }
+
+
 
 module.exports = {
     dbConnection
-}
+};
