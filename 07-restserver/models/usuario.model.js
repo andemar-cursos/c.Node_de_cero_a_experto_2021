@@ -1,3 +1,36 @@
 
-const {  } = require('mysql2');
+const { Schema, model } = require('mongoose');
 
+const UsuarioSchema = Schema({
+    nombre: {
+        type: String,
+        required: [true, 'El nombre es obligatorio']
+    },
+    correo: {
+        type: String,
+        required: [true, 'El nombre es obligatorio'],
+        unique: true
+    },
+    password: {
+        type: String,
+        required: [true, 'La contrasena es obligatoria']
+    },
+    img: {
+        type: String
+    },
+    rol: {
+        type: String,
+        required: true,
+        emun: ['ADMIN_ROLE', 'USER_ROLE']
+    },
+    estado: {
+        type: boolean,
+        default: true
+    },
+    google: {
+        type: boolean,
+        default: false,
+    },
+})
+
+module.exports = model('Usuario', UsuarioSchema);
