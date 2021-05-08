@@ -14,10 +14,21 @@ const getUsuarios = (req, res = response) => {
     });
 }
 
-const putUsuarios = (req, res = response) => {
-    const id = req.params.id;
+const putUsuarios = async(req, res = response) => {
+    const {id} = req.params;
+    const {password, google, correo, ...data} = req.body;
 
-    res.json(`put api - ${id}`);
+    if( password ) {
+        // Encriptar pass
+        const salt = bcryptjs.genSaltSync();
+        data.password = bcryptjs.hashSync(password, salt);
+    }
+
+    const usuario = await Usuario.findByIdAndUpdate(id, data);
+
+    res.json({
+        usuario,
+    });
 }
 
 const postUsuarios = async(req, res = response) => {
