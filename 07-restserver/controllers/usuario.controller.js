@@ -3,15 +3,18 @@ const bcryptjs = require("bcryptjs");
 const Usuario = require('../models/usuario.model');
 
 
-const getUsuarios = (req, res = response) => {
+const getUsuarios = async(req, res = response) => {
 
-    const {q, name = "No name", key} = req.query;
+    // const {q, name = "No name", key} = req.query;
 
-    res.json({
-        q,
-        name,
-        key
-    });
+    // Se debe validar que sean numeros antes de hacer el query
+    const {limite = 5, desde = 0} = req.query;
+
+    const usuarios = await Usuario.find()
+        .limit(Number(limite))
+        .skip(Number(desde));
+
+    res.json(usuarios);
 }
 
 const putUsuarios = async(req, res = response) => {
@@ -26,9 +29,7 @@ const putUsuarios = async(req, res = response) => {
 
     const usuario = await Usuario.findByIdAndUpdate(id, data);
 
-    res.json({
-        usuario,
-    });
+    res.json(usuario);
 }
 
 const postUsuarios = async(req, res = response) => {
