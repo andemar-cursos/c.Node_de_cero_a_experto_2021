@@ -9,12 +9,23 @@ const getUsuarios = async(req, res = response) => {
 
     // Se debe validar que sean numeros antes de hacer el query
     const {limite = 5, desde = 0} = req.query;
+    const query = {estado: true};
 
-    const usuarios = await Usuario.find()
+    // Obtener usuarios
+    const q1 = await Usuario.find(query)
         .limit(Number(limite))
         .skip(Number(desde));
 
-    res.json(usuarios);
+    // Obtener total de registros
+    const q2 = await Usuario.countDocuments(query);
+
+    // Lista de promesas a ejecutar
+    const [usuarios, total] = await Promise.all([q1,q2]);
+
+    res.json({
+        total,
+        usuarios
+    });
 }
 
 const putUsuarios = async(req, res = response) => {
