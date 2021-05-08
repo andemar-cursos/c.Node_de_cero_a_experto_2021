@@ -31,6 +31,12 @@ const UsuarioSchema = Schema({
         type: Boolean,
         default: false,
     },
-})
+});
+
+// Bloquea la __V y el password para evitar su envio al frontend
+UsuarioSchema.methods.toJson = function() {
+    const { __v, password, ...usuario } = this.toObject();
+    return usuario;
+}
 
 module.exports = model('Usuario', UsuarioSchema);
