@@ -59,8 +59,18 @@ const postUsuarios = async(req, res = response) => {
     res.json(usuario);
 }
 
-const deleteUsuarios = (req, res = response) => {
-    res.json('delete api');
+const deleteUsuarios = async(req, res = response) => {
+
+    const {id} = req.params;
+
+
+    // Elimiar "fisicamente"
+    // const usuario = await Usuario.findByIdAndDelete(id);
+
+    // Eliminar "logicamente"
+    const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+
+    res.json(usuario);
 }
 
 
