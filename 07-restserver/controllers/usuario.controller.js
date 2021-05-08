@@ -10,7 +10,10 @@ const putUsuarios = (req, res = response) => {
 }
 
 const postUsuarios = (req, res = response) => {
-    res.json('post api');
+
+    const body = req.body;
+
+    res.json(body);
 }
 
 const deleteUsuarios = (req, res = response) => {
