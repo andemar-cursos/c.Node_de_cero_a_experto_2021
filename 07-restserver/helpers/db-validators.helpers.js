@@ -14,8 +14,17 @@ const correoExiste = async(correo = "") => {
 
 }
 
+// id mongo existe
+const existeUsuarioById = async(id) => {
+    
+    const existe = await Usuario.findById(id);
+    if(!existe) throw new Error(`El id ${id} no existe`)
+
+}
+
 
 module.exports = {
     esRoleValido,
     correoExiste,
+    existeUsuarioById,
 }
