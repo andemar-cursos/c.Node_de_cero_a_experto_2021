@@ -24,11 +24,11 @@ const UsuarioSchema = Schema({
         emun: ['ADMIN_ROLE', 'USER_ROLE']
     },
     estado: {
-        type: boolean,
+        type: Boolean,
         default: true
     },
     google: {
-        type: boolean,
+        type: Boolean,
         default: false,
     },
 })

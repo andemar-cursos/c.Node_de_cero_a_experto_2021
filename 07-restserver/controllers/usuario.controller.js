@@ -1,4 +1,5 @@
 const {response} = require('express');
+const Usuario = require('../models/usuario.model');
 
 
 const getUsuarios = (req, res = response) => {
@@ -18,10 +19,14 @@ const putUsuarios = (req, res = response) => {
     res.json(`put api - ${id}`);
 }
 
-const postUsuarios = (req, res = response) => {
+const postUsuarios = async(req, res = response) => {
 
     const body = req.body;
-    res.json(body);
+    const usuario = new Usuario(body);
+
+    await usuario.save();
+
+    res.json(usuario);
 }
 
 const deleteUsuarios = (req, res = response) => {
