@@ -70,7 +70,9 @@ const deleteUsuarios = async(req, res = response) => {
     // Eliminar "logicamente"
     const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
 
-    res.json(usuario);
+    res.json({
+        usuario,
+    });
 }
 
 
