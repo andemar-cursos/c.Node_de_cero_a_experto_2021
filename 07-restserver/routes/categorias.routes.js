@@ -1,8 +1,8 @@
 const {Router} = require('express');
 const {check} = require('express-validator');
-const { login, googleSignIn } = require('../controllers/auth.controller');
-const { crearCategoria } = require('../controllers/categorias.controller');
-const {validarCampos, validarJWT} = require('../middlewares');
+const {existeCategoriaById} = require('../helpers/db-validators.helpers');
+const { crearCategoria, obtenerCategorias, obtenerCategoria, actualizarCategoria, borrarCategoria } = require('../controllers/categorias.controller');
+const {validarCampos, validarJWT, tieneRol} = require('../middlewares');
 
 const router = Router();
 
@@ -11,14 +11,14 @@ const router = Router();
  */
 
 // Get All - publico
-router.get('/', (req, res) => {
-    res.json('get');
-});
+router.get('/', [], obtenerCategorias);
 
 // Get by id - public
-router.get('/:id', (req, res) => {
-    res.json('get - id');
-});
+router.get('/:id', [
+    check('id', 'No es un ID valido').isMongoId(),
+    check('id').custom(existeCategoriaById),
+    validarCampos,
+], obtenerCategoria);
 
 // Crear categoria - privado
 router.post('/', 
@@ -30,17 +30,23 @@ router.post('/',
 
 
 // Actualizar registro - privado
-router.put('/:id', (req, res) => {
-    res.json('Update');
-});
+router.put('/:id', [
+    validarJWT,
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('id', 'No es un ID valido').isMongoId(),
+    check('id').custom(existeCategoriaById),
+    validarCampos,
+], actualizarCategoria);
 
 
 // Delete - Admin
-router.delete('/:id', (req, res) => {
-    res.json('Delete');
-});
-
-
+router.delete('/:id',[
+    check('id', 'No es un ID valido').isMongoId(),
+    check('id').custom(existeCategoriaById),
+    validarJWT,
+    tieneRol('ADMIN_ROLE'),
+    validarCampos,
+] , borrarCategoria);
 
 
 module.exports = router;
