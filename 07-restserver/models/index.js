@@ -1,10 +1,10 @@
-const Categoria = require('./categora.model');
+const Categoria = require('./categoria.model');
 const Role = require('./role.model');
-const Server = require('./server.model');
+const Server = require('./server');
 const Usuario = require('./usuario.model')
 
 
-model.exports = {
+module.exports = {
     Categoria,
     Role,
     Server,
